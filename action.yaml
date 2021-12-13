@@ -1,0 +1,17 @@
+name: 'Setup Kubeconfig'
+description: 'Setup Kubeconfig for an EKS cluster'
+inputs:
+  cluster-name:
+    description: 'EKS cluster name'
+    required: true
+  cluster-region:
+    description: 'EKS cluster region'
+    required: true
+  cluster-auth-arn:
+    description: 'AWS IAM role to assume to connect to EKS'
+    required: false
+
+runs:
+  using: "node12"
+  main: "dist_main/index.js"
+  post: "dist_cleanup/index.js"

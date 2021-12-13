@@ -1,0 +1,25 @@
+{
+  "name": "setup-kubeconfig-action",
+  "version": "1.0.0",
+  "description": "Action to create kubeconfig file for EKS clusters",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/airnity/setup-kubeconfig-action.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/airnity/setup-kubeconfig-action/issues"
+  },
+  "homepage": "https://github.com/airnity/setup-kubeconfig-action#readme",
+  "dependencies": {
+    "@actions/core": "^1.6.0",
+    "@aws-sdk/client-eks": "^3.43.0",
+    "yaml": "^1.10.2"
+  }
+}
