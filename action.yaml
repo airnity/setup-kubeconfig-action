@@ -7,9 +7,9 @@ inputs:
   cluster-region:
     description: 'EKS cluster region'
     required: true
-  cluster-auth-arn:
-    description: 'AWS IAM role to assume to connect to EKS'
-    required: false
+  account-id:
+    description: 'The AWS account id where the cluster is'
+    required: true
 
 runs:
   using: "node12"

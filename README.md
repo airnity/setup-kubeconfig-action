@@ -12,16 +12,16 @@ This action create a kubeconfig file in `~/.kube/config` for connecting to the K
 
 **Required** The AWS region where the EKS cluster is deployed.
 
-### `cluster-auth-arn`
+### `account-id`
 
-**Required** The AWS arn of the role assumed to connect to the EKS cluster.
+**Required** The AWS account id where the cluster is.
 
 ## Example usage
 
 ```yaml
-uses: airnity/setup-kubeconfig-action@v1
+uses: airnity/setup-kubeconfig-action@v2
 with:
   cluster-name: myEKSCluster
   cluster-region: eu-west-1
-  cluster-auth-arn: arn:aws:iam::123456789101:role/myRole
+  account-id: 123456789101
 ```
