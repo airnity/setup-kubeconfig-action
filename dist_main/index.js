@@ -41523,8 +41523,8 @@ const {
 const basePath = path.join(process.env.HOME, ".kube");
 const fileName = "config";
 
-async function assumeRole(runnerRegion, accountID) {
-  const roleArn = `arn:aws:iam::${accountID}:role/eks-apps-deployer-dev.role`;
+async function assumeRole(runnerRegion, accountID, roleName) {
+  const roleArn = `arn:aws:iam::${accountID}:role/${roleName}`;
 
   const client = new STSClient({ region: runnerRegion });
 
@@ -41554,7 +41554,8 @@ async function buildKubeconfig(
   credentials,
   clusterName,
   clusterRegion,
-  accountID
+  accountID,
+  roleName
 ) {
   const eks = new EKSClient({
     region: clusterRegion,
@@ -41562,7 +41563,7 @@ async function buildKubeconfig(
   });
   const command = new DescribeClusterCommand({ name: clusterName });
 
-  const clusterAuthARN = `arn:aws:iam::${accountID}:role/eks-apps-deployer-dev.role`;
+  const clusterAuthARN = `arn:aws:iam::${accountID}:role/${roleName}`;
 
   const results = await eks.send(command);
 
@@ -41627,11 +41628,18 @@ async function run() {
     const clusterName = core.getInput("cluster-name");
     const clusterRegion = core.getInput("cluster-region");
     const accountID = core.getInput("account-id");
+    const roleName = core.getInput("role-name");
     const runnerRegion = process.env.AWS_REGION;
 
-    const credentials = await assumeRole(runnerRegion, accountID);
+    const credentials = await assumeRole(runnerRegion, accountID, roleName);
 
-    buildKubeconfig(credentials, clusterName, clusterRegion, accountID);
+    buildKubeconfig(
+      credentials,
+      clusterName,
+      clusterRegion,
+      accountID,
+      roleName
+    );
 
     console.log("Kubeconfig created in: ", path.join(basePath, fileName));
   } catch (error) {

@@ -16,6 +16,10 @@ This action create a kubeconfig file in `~/.kube/config` for connecting to the K
 
 **Required** The AWS account id where the cluster is.
 
+### `role-name`
+
+**Required** The name of the AWS role to assume.
+
 ## Example usage
 
 ```yaml
@@ -24,4 +28,5 @@ with:
   cluster-name: myEKSCluster
   cluster-region: eu-west-1
   account-id: 123456789101
+  role-name: eks-apps-deployer-dev.role
 ```
