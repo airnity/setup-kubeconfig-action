@@ -18,7 +18,7 @@
   },
   "homepage": "https://github.com/airnity/setup-kubeconfig-action#readme",
   "dependencies": {
-    "@actions/core": "^1.6.0",
+    "@actions/core": "^1.9.1",
     "@aws-sdk/client-eks": "^3.43.0",
     "@aws-sdk/client-sts": "^3.48.0",
     "yaml": "^1.10.2"
